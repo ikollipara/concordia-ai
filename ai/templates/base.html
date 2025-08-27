@@ -1,0 +1,15 @@
+{% load django_vite %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Concordia AI{% block title %}{% endblock %}</title>
+	{% vite_hmr_client %}
+	{% vite_asset "static/src/app.js" %}
+    </head>
+    <body class="bg-background" {% block bodyattrs %}{% endblock %}>
+    {% csrf_token %}
+	{% block content %}
+	{% endblock %}
+    </body>
+</html>

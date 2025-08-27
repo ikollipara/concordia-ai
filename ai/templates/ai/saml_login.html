@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} | Login{% endblock %}
+
+{% block content %}
+    <h1>Hello World</h1>
+    <form method="post">
+	{% csrf_token %}
+	<button class="btn" type="submit">Login with Concordia</button>
+    </form>
+{% endblock %}

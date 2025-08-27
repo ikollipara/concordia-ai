@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <aside class="sidebar" aria-hidden="false">
+        <nav>
+            <header>Concordia AI</header>
+            <section>
+            <div role="group">
+                <span role="heading">Bots</span>
+                <span
+                hx-get="{% url 'ai:bot_list' %}"
+                hx-swap="outerHTML"
+                hx-trigger="load"
+                >
+                </span>
+            </div>
+            </section>
+            <footer>
+                <form class="flex gap-x-2" action="{% url 'ai:saml_sls' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn w-full px-2" type="submit">Logout</button>
+                </form>
+            </footer>
+        </nav>
+    </aside>
+    <main>
+	<div id="chat"></div>
+    </main>
+{% endblock %}

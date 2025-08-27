@@ -34,12 +34,13 @@ SECRET_KEY = env.str("AI_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("AI_DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "ai",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "django_vite",
 ]
 
 MIDDLEWARE = [
@@ -121,7 +123,36 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static" / "dist",
+    BASE_DIR / "static" / "public",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Open AI Config
+
+OPENAI_KEY = env.str("OPENAI_KEY")
+OPENAI_MAX_TOKENS = env.int("OPENAI_MAX_TOKENS", default=8_000)
+
+# SAML
+
+METADATA_URL = env.str("METADATA_URL")
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+LOGIN_URL = "/accounts/saml/cune/login/"
+REDIRECT_URL = "/"
+CSRF_TRUSTED_ORIGINS = ["https://login.microsoftonline.com"]
+
+# Django Vite
+
+DJANGO_VITE = {
+    "default": {
+        "dev_mode": DEBUG,
+    }
+}

@@ -1,0 +1,21 @@
+<ul>
+    {% for bot in bots %}
+	<li>
+	    <a
+		hx-get="{% url 'ai:bot_chat' bot.pk %}"
+		href="{% url 'ai:bot_chat' bot.pk %}"
+		hx-target="#chat"
+		hx-select="#chat"
+		hx-swap="outerHTML"
+		hx-push-url="true"
+		id="bot{{ bot.pk }}"
+	    >
+		<span>{{ bot.name }}</span>
+		<script defer>
+		 if(window.location.href.includes("{% url 'ai:bot_chat' bot.pk %}"))
+		     document.querySelector("#bot{{bot.pk}}").setAttribute("aria-current", "page");
+		</script>
+	    </a>
+	</li>
+    {% endfor %}
+</ul>
