@@ -120,12 +120,10 @@ updateHistory : History -> Maybe Prompt -> Response -> History
 updateHistory history mprompt response =
     case mprompt of
         Nothing ->
-            Debug.log "Prompt: Nothing"
-                history
+            history
 
         Just prompt ->
-            Debug.log response.body
-                Dict.insert
+            Dict.insert
                 prompt.id
                 { prompt | response = Just response }
                 history

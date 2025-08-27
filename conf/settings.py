@@ -34,7 +34,7 @@ SECRET_KEY = env.str("AI_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("AI_DEBUG", default=False)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = env.list("AI_ALLOWED_HOSTS", default=["*"])
 
 
 # Application definition
@@ -121,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = env.str("AI_STATIC_URL", default="static/")
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
